@@ -1,0 +1,154 @@
+body {
+    font-family: var(--font);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    height: 100vh;
+}
+
+.sidebar-container {
+    background-color: var(--main-bg-color);
+    padding: 1rem;
+    color: var(--green-color);
+    font-size: 14px;
+    display: grid;
+    grid-auto-rows: 110px 1fr 30px;
+    
+}
+
+.sidebar-container h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted var(--blue-light);
+    color: var(--blue-light);
+    font-weight: bold;
+}
+
+.logo {
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    margin: 1em 0;
+}
+
+.user {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .5rem;
+}
+
+.user--status {
+    font-style: italic;
+    color: var(--green-light)
+}
+
+.brand {
+    border-bottom: 1px dotted var(--blue-light);
+}
+
+.account {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.account a {
+    text-decoration: none;
+    color: var(--blue-light);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.account a:hover {
+    background-color: var(--white-color);
+    border-radius: .5rem;
+    padding: 1rem;
+}
+
+.main-container {
+    display: grid;
+    grid-template-rows: 80px calc(100vh - 130px) 50px;
+    margin-left: 1rem;
+    color: var(--main-bg-color);
+    overflow: hidden;
+}
+
+.chat-details {
+    border-bottom: 1px dotted var(--main-bg-color);
+}
+
+.chat-details h1 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+}
+.message {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.message-avatar img {
+    width: 50px;
+}
+
+.message--user{
+    margin-bottom: .25rem;
+}
+
+.message-form{
+    display: flex;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: calc(100vh - 130px)
+}
+
+.message-form--text {
+    flex-grow: 2;
+    height: 50px;
+    padding: 0 0 0 1rem;
+    margin: 0;
+    border: none;
+    border-top: 1px dotted var(--main-bg-color);
+}
+
+.message-form--submit {
+    background-color: var(--green-light);
+    border: none;
+    min-width: 80px;
+    color: var(--main-bg-color);
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--smooth-blue); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--strong-blue);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

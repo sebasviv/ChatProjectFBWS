@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/css/global.css" />
+    <link rel="stylesheet" href="/public/css/chat.css" />
+    <link rel="stylesheet" href="/public/normalize.css/normalize.css" />
+    <link rel="preconnect" href="/publichttps://fonts.googleapis.com" />
+
+    <title>Chat</title>
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar-container">
+        <div class="brand">
+          <img src="/assets/logo_large.png" alt="" class="logo" />
+        </div>
+        <div class="users">
+          <h2>Usuarios conectados</h2>
+        </div>
+        <div id='listConnected'>
+          <h2>usuarios</h2>
+        </div>
+        <div class="account">
+          <a id="close-session">Cerrar Sesión</a>
+        </div>
+      </aside>
+      <main class="main-container">
+        <div class="chat-details">
+          <h1 class="title">Canal público</h1>
+          <span class="sub-title">Sala general de comunicación</span>
+        </div>
+        <div class="messages-container" id="message_content"></div>
+        <div class="form-container">
+          <form class="message-form" id="message-form" autocomplete="off">
+            <input
+              class="message-form--text"
+              type="text"
+              placeholder="Ingrese su mensaje"
+              name="messageText"
+            />
+            <input class="message-form--submit" type="submit" value="Enviar" />
+          </form>
+        </div>
+      </main>
+  </body>
+</html>
