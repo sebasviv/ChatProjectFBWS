@@ -200,7 +200,7 @@ Router.add(/login/, function () {
 
 
   const wsExtern = () => {
-    ws=new WebSocket('ws://echo.websocket.org')
+    ws=new WebSocket('wss://echo.websocket.org')
     ws.onopen = () => {
       console.log('Se conecto')
       const welcome = {
