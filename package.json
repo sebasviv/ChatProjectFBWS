@@ -1,0 +1,23 @@
+{
+  "name": "chatestable",
+  "version": "1.0.0",
+  "description": "chat con firebase y websocket",
+  "main": "router.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebasviv/ChatProjectFBWS.git"
+  },
+  "keywords": [
+    "chat",
+    "websocket"
+  ],
+  "author": "Sebastian Viveros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebasviv/ChatProjectFBWS/issues"
+  },
+  "homepage": "https://github.com/sebasviv/ChatProjectFBWS#readme"
+}
