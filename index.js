@@ -36,8 +36,8 @@ firebase.auth().onAuthStateChanged((user) => {
     localStorage.setItem('user', user.displayName)
     localStorage.setItem('uid', user.uid)
     uploadMessageFirebase('Se ha conectado')
-    
-      // ...
+    insertNameNav(user.displayName)
+
     } else {
       Router.navigate('/login')
     }
@@ -68,18 +68,36 @@ firebase.auth().onAuthStateChanged((user) => {
     .catch(e => console.log(e))
   }
 
-  //recibir mensajes
-  const receiveMessages = (content) => {
-    firebase.firestore().collection('chat').orderBy('hour')
+//recibir mensajes
+const receiveMessages = (content) => {
+  const clock = new Date()
+  let ampm = clock.getHours() >= 12 ? ' pm' : ' am';
+  const currentClock = `${clock.getHours()}:${clock.getMinutes()}:${clock.getSeconds()}${ampm}`
+  firebase.firestore().collection('chat').orderBy('hour')
     .onSnapshot(query => {
-        content.innerHTML = ''
-        query.forEach(doc => {
-            console.log(doc.data())
-            if(doc.data().uid === localStorage.getItem('uid')){
-                drawMessage(doc.data(),'send')
-            }else {
-                drawMessage(doc.data(), 'receive')
-            }
-        })
+      content.innerHTML = ''
+      query.forEach(doc => {
+        if (doc.data().hour >= currentClock) {
+          if (doc.data().uid === localStorage.getItem('uid')) {
+            drawMessage(doc.data(), 'send')
+          } else {
+            drawMessage(doc.data(), 'receive')
+          }
+        } else {
+          content.innerHTML = ''
+        }
+      })
     })
+}
+
+  //insertar nombre en sidebar
+
+  const insertNameNav = (user) => {
+    let person = `
+    <div class="user" id="userConnectOnly">
+      <span class="user--name">${user}</span>
+      <span class="user--status">En linea</span>
+    </div>
+    `
+    insertNameSidebar(person)
   }

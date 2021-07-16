@@ -1,6 +1,6 @@
 // Creamos el objeto global ws para acceder al websocket desde diferentes funciones
 let ws
-let element
+let navbar
 
 const Router = {
     routes: [],
@@ -184,6 +184,7 @@ Router.add(/login/, function () {
       </main>
     `;
   const contentMessage = document.getElementById('message_content')
+  navbar = document.getElementById('userConnected')
   receiveMessages(contentMessage)
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
@@ -191,7 +192,7 @@ Router.add(/login/, function () {
     // eventForm1(e)
   })
 
-  element = document.getElementById('userConnected')
+ 
 
   const buttonClose = document.getElementById("close-session")
   if (buttonClose) {
@@ -238,5 +239,10 @@ Router.add(/login/, function () {
 // })
 
 const insertNameSidebar = (person) => {
-  if (element) element.insertAdjacentHTML("beforeend", person);
+  if (navbar) {
+    navbar.insertAdjacentHTML("beforeend", person)
+  }else {
+    console.log("no existe navbar")
+  }
+    
 }
