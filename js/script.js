@@ -16,7 +16,6 @@ const prepareLogin = async (user) => {
   const data = await executeService(apiLogin, "POST", user);
   if (data.type === "ok") {
     localStorage.setItem("token", data.data);
-    console.log("Se inicio sesion");
     return data
   }
   
@@ -80,31 +79,54 @@ const message = (data) => {
 
 
 
-const drawMessage = (data) => {
-  const now = new Date()
-  let ampm = now.getHours() >= 12 ? ' pm' : ' am';
-  let content = `
-  <div class="message">
-  <div class="message-avatar">
-      <img src="/assets/man.png" alt="">
-  </div>
-  <div class="message-info">
-      <div class="message--user">
-          <span class="message-user_name">${data.name}</span>
-          <span class="message--user_time">${now.getHours()}:${now.getMinutes()}${ampm}</span>
+const drawMessage = (data, type) => {
+  let content
+  switch(type) {
+    case 'send':
+      content = `
+      <div class="message">
+      <div class="message-avatar">
+          <img src="/assets/man.png" alt="">
       </div>
-      <div class="message--content">
-          ${data.message}
+      <div class="message-info">
+          <div class="message--user">
+              <span class="message-user_name">${data.name}</span>
+              <span class="message--user_time">${data.hour}</span>
+          </div>
+          <div class="message--content">
+              ${data.message}
+          </div>
       </div>
-  </div>
-</div>
-`;
+    </div>
+    `;
+    break
+
+    case 'receive':
+      content = `
+      <div class="message">
+      <div class="message-avatar">
+          <img src="/assets/man.png" alt="">
+      </div>
+      <div class="message-info">
+          <div class="message--user">
+              <span class="message-user_name">${data.name}</span>
+              <span class="message--user_time">${data.hour}</span>
+          </div>
+          <div class="message--content">
+              ${data.message}
+          </div>
+      </div>
+    </div>
+    `;
+
+    break
+  }
+ 
   let messageContainer = document.getElementById("message_content");
   if (messageContainer) {
     messageContainer.insertAdjacentHTML("beforeend", content);
+    
     messageContainer.scrollTop = messageContainer.scrollHeight;
-  } else {
-    console.log("no existe");
   }
 }
 
@@ -160,7 +182,7 @@ const eventFormLogin = () => {
       prepareLogin(user).then(data => {
         if(data.type == "ok") {
           localStorage.setItem('user', e.target.userNameLogin.value)
-          wsExtern()
+          // wsExtern()
           Router.navigate('/chat')
         }
       }).catch(e => {

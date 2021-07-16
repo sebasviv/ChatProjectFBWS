@@ -120,8 +120,6 @@ Router.add(/login/, function () {
 
   const btnGoogle = document.getElementById('btnLoginGoogle')
   loginWithGoogle(btnGoogle)
-
-  wsExtern()
   const formLogin = document.getElementById('form-login')
   nextToRegister.addEventListener('click', e => {
     e.preventDefault()
@@ -153,8 +151,7 @@ Router.add(/login/, function () {
   eventFormRegister(formRegister);
 })
 .add(/chat/, () => {
-    console.log("Estoy en el chat");
-    document.body.innerHTML = `
+    document.body.innerHTML = /*html*/ `
     <div class="container">
       <aside class="sidebar-container">
         <div class="brand">
@@ -186,10 +183,12 @@ Router.add(/login/, function () {
         </div>
       </main>
     `;
+  const contentMessage = document.getElementById('message_content')
+  receiveMessages(contentMessage)
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
+    sendMessagesFirebase(e)
     // eventForm1(e)
-    senMessageFirebase(e)
   })
 
   element = document.getElementById('userConnected')
@@ -197,10 +196,10 @@ Router.add(/login/, function () {
   const buttonClose = document.getElementById("close-session")
   if (buttonClose) {
     buttonClose.addEventListener("click", e => {
-      logoutGoogle()
-      Router.navigate('/login')
       localStorage.clear()
+      logoutGoogle()
       ws.close()
+      Router.navigate('/login')
     })
   }
 
@@ -226,12 +225,13 @@ Router.add(/login/, function () {
       message(JSON.parse(messageWs.data));
     }
   }
-if (localStorage.getItem("token") === "ESTEESUNTOKENMUYSEGUROQUENADIEPUEDEVIOLENTAR:)" ) {
-    Router.navigate('/chat')
-    wsExtern()
-}else {
-    Router.navigate('/login')
-}
+
+// if (localStorage.getItem("token") === "ESTEESUNTOKENMUYSEGUROQUENADIEPUEDEVIOLENTAR:)" ) {
+//     Router.navigate('/chat')
+//     wsExtern()
+// }else {
+//     Router.navigate('/login')
+// }
 
 // document.addEventListener('beforeunlodad', e => {
 //   localStorage.clear()
