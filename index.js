@@ -50,7 +50,7 @@ firebase.auth().onAuthStateChanged((user) => {
     element.target.messageText.value = ''
   }
 
-  //subir mensajes
+  //subir mensaje
   const uploadMessageFirebase = (messagenative) => {
     const now = new Date()
     let ampm = now.getHours() >= 12 ? ' pm' : ' am';
