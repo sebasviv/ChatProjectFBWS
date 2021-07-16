@@ -21,6 +21,22 @@
     width: 300px;
     height: auto;
 }
+
+.logo-google {
+    width: 30px;
+}
+
+.google-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 5px 0;
+    border-radius: 50%;
+    background-color: var(--smooth-blue);
+    width: 40px;
+    cursor: pointer;
+}
 .form-login{
     display: flex;
     flex-direction: column;

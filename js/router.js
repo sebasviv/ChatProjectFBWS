@@ -94,7 +94,7 @@ Router.navigate();
 
 //agregando rutas a nuestro router
 Router.add(/login/, function () {
-  document.body.innerHTML = `
+  document.body.innerHTML = /*html*/ `
   <div class="login-page">
       <div class="login-container">
         <div class="brand-login">
@@ -110,10 +110,18 @@ Router.add(/login/, function () {
           />
           <input type="submit" value="Ingresar" class="form-login--submit" />
         </form>
+        <div class="google-container" id="btnLoginGoogle">
+          <img src="/assets/google.png" alt="google" class="logo-google"/>
+        </div>
         <div class="linkRegister"><p>Has click <a id="nextToRegister"href="#">aqui</a>para registrarte</p></div>
       </div>
     </div>
   `;
+
+  const btnGoogle = document.getElementById('btnLoginGoogle')
+  loginWithGoogle(btnGoogle)
+
+  wsExtern()
   const formLogin = document.getElementById('form-login')
   nextToRegister.addEventListener('click', e => {
     e.preventDefault()
@@ -180,7 +188,8 @@ Router.add(/login/, function () {
     `;
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
-    eventForm1(e)
+    // eventForm1(e)
+    senMessageFirebase(e)
   })
 
   element = document.getElementById('userConnected')
@@ -188,8 +197,9 @@ Router.add(/login/, function () {
   const buttonClose = document.getElementById("close-session")
   if (buttonClose) {
     buttonClose.addEventListener("click", e => {
-      localStorage.clear()
+      logoutGoogle()
       Router.navigate('/login')
+      localStorage.clear()
       ws.close()
     })
   }
@@ -223,9 +233,9 @@ if (localStorage.getItem("token") === "ESTEESUNTOKENMUYSEGUROQUENADIEPUEDEVIOLEN
     Router.navigate('/login')
 }
 
-document.addEventListener('beforeunlodad', e => {
-  localStorage.clear()
-})
+// document.addEventListener('beforeunlodad', e => {
+//   localStorage.clear()
+// })
 
 const insertNameSidebar = (person) => {
   if (element) element.insertAdjacentHTML("beforeend", person);
